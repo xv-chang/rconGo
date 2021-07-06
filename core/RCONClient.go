@@ -131,11 +131,7 @@ func (client *RCONClient) ReadData() []*RCONPacket {
 	packets := make([]*RCONPacket, 1)
 	p := client.ReadPacket()
 	packets[0] = p
-	if p.Type == AUTH_RESPONSE {
-		if p.ID > -1 {
-			client.Authed = true
-		}
-	} else if p.Type == RESPONSE_VALUE {
+	if p.Type == RESPONSE_VALUE {
 		for p.Body != "" {
 			p = client.ReadPacket()
 			packets = append(packets, p)
