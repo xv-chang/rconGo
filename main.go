@@ -8,10 +8,26 @@ import (
 
 func main() {
 
-	// sq := core.NewServerQuery("myl4d2.tk:27015")
-	sq := core.NewServerQuery("43.241.50.78:32063")
+	serverHost := "you Server Ip:port"
+	rconPassword := "rconpassword"
+	//test server query
+	sq := core.NewServerQuery(serverHost)
 	defer sq.Close()
-	r := sq.GetPlayers()
-	fmt.Println(r)
+	r1 := sq.GetPlayers()
+	fmt.Println(r1)
+
+	//test rcon
+	client := core.NewRCONClient(serverHost, rconPassword)
+	defer client.Close()
+	err := client.SendAuth()
+	if err != nil {
+		println("rcon password error")
+		return
+	}
+	r2, err := client.ExecCommand("sm_cvar z_tank_health 8000")
+	if err != nil {
+		println("no auth")
+	}
+	fmt.Println(r2)
 
 }
