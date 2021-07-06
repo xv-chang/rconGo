@@ -1,0 +1,4 @@
+# rconGo
+golang version rcon
+
+
