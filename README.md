@@ -10,7 +10,7 @@ golang version RCON Protocal
 
 > Server Queries
 
-```
+```golang
     serverHost := "you Server Ip:port"
    	sq := core.NewServerQuery(serverHost)
 	defer sq.Close()
@@ -24,7 +24,7 @@ golang version RCON Protocal
 
 > RCON
 
-```
+```golang
     serverHost := "you Server Ip:port"
 	rconPassword := "rconpassword"
     client := core.NewRCONClient(serverHost, rconPassword)
