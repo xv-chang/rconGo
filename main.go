@@ -13,8 +13,12 @@ func main() {
 	//test server query
 	sq := core.NewServerQuery(serverHost)
 	defer sq.Close()
-	r1 := sq.GetPlayers()
-	fmt.Println(r1)
+	info := sq.GetInfo()
+	fmt.Println(info)
+	players := sq.GetPlayers()
+	fmt.Println(players)
+	rules := sq.GetRules()
+	fmt.Println(rules)
 
 	//test rcon
 	client := core.NewRCONClient(serverHost, rconPassword)
@@ -24,10 +28,10 @@ func main() {
 		println("rcon password error")
 		return
 	}
-	r2, err := client.ExecCommand("sm_cvar z_tank_health 8000")
+	r, err := client.ExecCommand("sm_cvar z_tank_health 8000")
 	if err != nil {
 		println("no auth")
 	}
-	fmt.Println(r2)
+	fmt.Println(r)
 
 }
